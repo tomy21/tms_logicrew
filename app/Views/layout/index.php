@@ -103,29 +103,73 @@
                             </a>
                         </li>
 
-                        <li class="nav-header">EXAMPLES</li>
+                        <li class="nav-header">Customer</li>
                         <li class="nav-item">
-                            <a href="../calendar.html" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
+                            <a href="<?= site_url('CsellerList/index') ?>" class="nav-link <?= $menu == 'seller' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-users"></i>
                                 <p>
-                                    Calendar
-                                    <span class="badge badge-info right">2</span>
+                                    List Seller
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../gallery.html" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
+                            <a href="<?= site_url('CWarehouseList/index') ?>" class="nav-link <?= $menu == 'warehouse' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-warehouse"></i>
                                 <p>
-                                    Gallery
+                                    List Warehouse
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-header">Team HUB</li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('CInbound/index') ?>" class="nav-link <?= $menu == 'inbound' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-box"></i>
+                                <p>
+                                    Inbound
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../kanban.html" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
+                            <a href="<?= site_url('CSorting/index') ?>" class="nav-link <?= $menu == 'sorting' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-cubes"></i>
                                 <p>
-                                    Kanban Board
+                                    Sorting
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('COutbound/index') ?>" class="nav-link <?= $menu == 'outbound' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-truck"></i>
+                                <p>
+                                    Outbound
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('CReturn/index') ?>" class="nav-link <?= $menu == 'return' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-undo"></i>
+                                <p>
+                                    Return
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-header">Report</li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('CReport/index') ?>" class="nav-link <?= $menu == 'report' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-file-alt"></i>
+                                <p>
+                                    Report
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('CAnalytics/index') ?>" class="nav-link <?= $menu == 'analytics' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-chart-line"></i>
+                                <p>
+                                    Analytics
                                 </p>
                             </a>
                         </li>
