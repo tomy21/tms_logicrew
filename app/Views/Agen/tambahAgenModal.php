@@ -1,11 +1,9 @@
-<div class="modal fade" id="tambahAgen" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="tambahAgen" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Agen</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title fs-5" id="staticBackdropLabel">Tambah Agen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- <?= form_open('Basket/addBasket', ['class' => 'formBasket']) ?> -->
             <div class="modal-body">
@@ -49,12 +47,10 @@
                         <input type="text" name="tinggi" class="form-control" id="tinggi" value="" min="0">
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
-
             </div>
             <?= form_close(); ?>
         </div>

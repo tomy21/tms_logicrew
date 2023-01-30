@@ -47,6 +47,7 @@
                 "url": "<?php echo site_url('CStatus/dataAjax') ?>",
                 "type": "POST",
             },
+            "lengthMenu": [10, 25, 50, 75, 100, 1000],
             dom: 'lBftip', // Add the Copy, Print and export to CSV, Excel and PDF buttons
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'

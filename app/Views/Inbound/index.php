@@ -8,8 +8,8 @@
 <?= $this->section('isi'); ?>
 
 <div class="row justify-content-between pl-2 pr-2">
-    <div class="card card-secondary" style="width: 30%;">
-        <div class="card-header">
+    <div class="card p-0" style="width: 30%;">
+        <div class="card-header bg-cyan">
             <h6>Scan Inbound</h6>
         </div>
         <div class="card-body">
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="card card-secondary" style="width: 30%;">
+    <div class="card card-cyan p-0" style="width: 30%;">
         <div class="card-header">
             <h3 class="card-title">Import Data Manifest</h3>
         </div>
@@ -69,7 +69,7 @@
         </form>
     </div>
 
-    <div class="card card-secondary" style="width: 30%;">
+    <div class="card card-cyan p-0" style="width: 30%;">
         <div class="card-header">
             <h6>Total Pickup</h6>
         </div>

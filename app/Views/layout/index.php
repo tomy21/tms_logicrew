@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/fontawesome-free/css/all.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="<?= base_url() ?>/plugins/daterangepicker/daterangepicker.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -21,8 +23,15 @@
     <link rel="stylesheet" href="<?= site_url() ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= site_url() ?>/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <script src="<?= base_url() ?>/plugins/jquery/jquery.min.js"></script>
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
 
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
@@ -65,10 +74,30 @@
                     <div class="image">
                         <img src="<?= base_url() ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
-                    </div>
                 </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <p>Tomy Agung Saputro</p>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-user mr-2"></i> Profil
+                            </a>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                            </a>
+                            <!-- Message End -->
+                        </a>
+
+                    </div>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -247,10 +276,14 @@
     <script src="<?= base_url() ?>/plugins/select2/js/select2.full.min.js"></script>
     <!-- DataTables  & Plugins -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="<?= base_url() ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables  & Plugins -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- date-range-picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- DataTables  & Plugins -->
     <script src="<?= site_url() ?>/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= site_url() ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

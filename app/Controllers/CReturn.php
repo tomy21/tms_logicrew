@@ -15,4 +15,33 @@ class CReturn extends BaseController
         ];
         return view('Return/index', $data);
     }
+    public function createOutbound(){
+        $data = [
+            'menu'      => 'return',
+            'submenu'   => 'OutboundReturn',
+            'link'      => 'CReturn/index'
+        ];
+        return view("Return/outboundReturn", $data);
+    }
+    public function historyReturn(){
+        $data = [
+            'menu'      => 'return',
+            'submenu'   => 'History',
+            'link'      => 'CReturn/index'
+        ];
+        return view("Return/historyReturn", $data);
+    }
+    public function tableReturn()
+    {
+        if ($this->request->isAJAX()) {
+            $noAwb = $this->request->getPost('noAwb');
+
+            $json = [
+                'data' => view('Return/tableReturn')
+            ];
+            echo json_encode($json);
+        } else {
+            exit('Maaf tidak bisa dipanggil');
+        }
+    }
 }
