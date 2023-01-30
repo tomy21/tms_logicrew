@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/fontawesome-free/css/all.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/dist/css/adminlte.min.css">
     <!-- DataTables -->
@@ -117,6 +120,14 @@
                                 <i class="nav-icon fa fa-warehouse"></i>
                                 <p>
                                     List Warehouse
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('CListAgen/index') ?>" class="nav-link <?= $menu == 'agen' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-briefcase"></i>
+                                <p>
+                                    List Agen
                                 </p>
                             </a>
                         </li>
@@ -232,6 +243,8 @@
     <script src="<?= base_url() ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>/dist/js/adminlte.min.js"></script>
+    <!-- Select2 -->
+    <script src="<?= base_url() ?>/plugins/select2/js/select2.full.min.js"></script>
     <!-- DataTables  & Plugins -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <!-- Bootstrap 4 -->

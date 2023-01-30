@@ -15,4 +15,17 @@ class COutbound extends BaseController
         ];
         return view('Outbound/index', $data);
     }
+    public function tableOutbound()
+    {
+        if ($this->request->isAJAX()) {
+            $noAwb = $this->request->getPost('noAwb');
+
+            $json = [
+                'data' => view('Outbound/tableOutbound')
+            ];
+            echo json_encode($json);
+        } else {
+            exit('Maaf tidak bisa dipanggil');
+        }
+    }
 }

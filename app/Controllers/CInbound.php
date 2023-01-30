@@ -15,4 +15,16 @@ class CInbound extends BaseController
         ];
         return view('Inbound/index', $data);
     }
+    public function tableInbound(){
+        if ($this->request->isAJAX()) {
+            $noAwb = $this->request->getPost('noAwb');
+            
+            $json = [
+                'data' => view('Inbound/tableList')
+            ];
+            echo json_encode($json);
+        } else {
+            exit('Maaf tidak bisa dipanggil');
+        }
+    }
 }

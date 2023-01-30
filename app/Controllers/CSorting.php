@@ -13,6 +13,19 @@ class CSorting extends BaseController
             'submenu'   => 'Sorting',
             'link'      => 'CSorting/index'
         ];
-        return view('Analytics/index', $data);
+        return view('Sorting/index', $data);
+    }
+    public function tableSorting()
+    {
+        if ($this->request->isAJAX()) {
+            $noAwb = $this->request->getPost('noAwb');
+
+            $json = [
+                'data' => view('Sorting/tableSorting')
+            ];
+            echo json_encode($json);
+        } else {
+            exit('Maaf tidak bisa dipanggil');
+        }
     }
 }
