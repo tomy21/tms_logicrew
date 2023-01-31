@@ -1,5 +1,5 @@
-<div class="modal fade" id="tambahWarehouse" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+<div class="modal fade" id="tambahWarehouse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Tambah Warehouse</h5>
@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="codeBasket">ID Warehouse</label>
-                    <input type="text" class="form-control" name="idbasket" id="codeBasket" aria-describedby="CodeBasket" value="" readonly>
+                    <input type="text" class="form-control" name="idbasket" id="codeBasket" aria-describedby="CodeBasket" value="<?= $idWH ?>" readonly>
                 </div>
                 <div class="form-group row">
                     <label for="panajng" class="col-sm-3 col-form-label">Warehouse Name</label>

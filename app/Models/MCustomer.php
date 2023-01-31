@@ -3,40 +3,106 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\HTTP\RequestInterface;
 
 class MCustomer extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'mcustomers';
+    protected $table            = 'tbl_customer';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $insertID         = 0;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['code_customer', 'desc', 'nama_customer', 'alamat_customer','email', 'phone', 'longitude', 'latitude','pic_name', 'join_date', 'status'];
+    protected $useTimestamps    = true;
+    protected $column_order     = array(null, 'nama_customer','desc', 'phone', 'email', 'pic_name', null, null, 'status', null, null);
+    protected $column_search    = array('nama_customer', 'alamat_agen', 'phone', 'pic_name');
+    protected $order            = array('created_at' => 'desc');
+    protected $request;
+    protected $dt;
+    protected $db;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    public function __construct(RequestInterface $request)
+    {
+        parent::__construct();
+        $this->db = db_connect();
+        $this->request = $request;
+        $this->dt = $this->db->table($this->table);
+    }
+    private function getDatatablesQuery()
+    {
+        $i = 0;
+        foreach ($this->column_search as $item) {
+            if ($_POST['search']['value']) {
+                if ($i === 0) {
+                    $this->dt->groupStart();
+                    $this->dt->like($item, $_POST['search']['value']);
+                } else {
+                    $this->dt->orLike($item, $_POST['search']['value']);
+                }
+                if (count($this->column_search) - 1 == $i)
+                    $this->dt->groupEnd();
+            }
+            $i++;
+        }
+        if ($this->request->getPost('order')) {
+            $this->dt->orderBy($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else if (isset($this->order)) {
+            $order = $this->order;
+            $this->dt->orderBy(key($order), $order[key($order)]);
+        }
+    }
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    public function getDatatables()
+    {
+        $this->getDatatablesQuery();
+        if ($this->request->getPost('length') != -1)
+            $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
+        $query = $this->dt->get();
+        return $query->getResult();
+    }
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function countFiltered()
+    {
+        $this->getDatatablesQuery();
+        return $this->dt->countAllResults();
+    }
+
+    public function countAll()
+    {
+        $tbl_storage = $this->db->table($this->table);
+        return $tbl_storage->countAllResults();
+    }
+    public function idSeller()
+    {
+        $kode = $this->db->table('tbl_customer')->select('RIGHT(code_customer,3) as id', false)->orderBy('code_customer', 'DESC')->limit(1)->get()->getRowArray();
+
+        // $no = 1;
+        if (isset($kode['id']) == null) {
+            $no = 1;
+        } else {
+            $no = intval($kode['id']) + 1;
+        }
+
+        $tgl = date('Ymd');
+        $awal = "Sel";
+        $l = "-";
+        $batas = str_pad($no, 3, "0", STR_PAD_LEFT);
+        $idAgen = $awal . $l . $tgl . $batas;
+        return $idAgen;
+    }
+    public function idWarehouse()
+    {
+        $kode = $this->db->table('tbl_customer')->select('RIGHT(code_customer,3) as id', false)->orderBy('code_customer', 'DESC')->limit(1)->get()->getRowArray();
+
+        // $no = 1;
+        if (isset($kode['id']) == null) {
+            $no = 1;
+        } else {
+            $no = intval($kode['id']) + 1;
+        }
+
+        $tgl = date('Ymd');
+        $awal = "WH";
+        $l = "-";
+        $batas = str_pad($no, 3, "0", STR_PAD_LEFT);
+        $idAgen = $awal . $l . $tgl . $batas;
+        return $idAgen;
+    }
 }
