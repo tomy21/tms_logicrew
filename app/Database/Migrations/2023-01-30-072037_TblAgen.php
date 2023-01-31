@@ -32,8 +32,8 @@ class TblAgen extends Migration
                 'constraint'        => 255,
             ],
             'phone' => [
-                'type'              => 'int',
-                'constraint'        => 18,
+                'type'              => 'varchar',
+                'constraint'        => 100,
             ],
             'longitude' => [
                 'type'              => 'varchar',
@@ -42,6 +42,14 @@ class TblAgen extends Migration
             'latitude' => [
                 'type'              => 'varchar',
                 'constraint'        => 255,
+            ],
+            'owner_name' => [
+                'type'              => 'varchar',
+                'constraint'        => 255,
+            ],
+            'status' => [
+                'type'              => 'enum',
+                'constraint'        => ['1','2'],
             ],
             'join_date' => [
                 'type'              => 'date',

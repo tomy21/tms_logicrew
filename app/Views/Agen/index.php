@@ -8,7 +8,7 @@
 <?= $this->section('isi'); ?>
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">List Seller</h3>
+        <h3 class="card-title">List Agen</h3>
 
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -19,127 +19,24 @@
             </button>
         </div>
     </div>
-    <div class="card-body p-0">
+    <div class="card-body">
         <div class="btn btn-sm btn-primary p-2 m-2" id="tambahModal"><i class="fa fa-plus mr-3"></i> Tambah Data Agen</div>
-        <table class="table table-striped projects">
+        <table id="example1" class="table table-striped" style="width: 100%;">
             <thead>
                 <tr>
-                    <th style="width: 1%">
-                        #
-                    </th>
-                    <th style="width: 20%">
-                        Seller Name
-                    </th>
-                    <th>
-                        Address
-                    </th>
-                    <th>
-                        Contact
-                    </th>
-                    <th>
-                        Volume
-                    </th>
-                    <th>
-                        Tagihan Ongkir
-                    </th>
-                    <th style="width: 8%" class="text-center">
-                        Status
-                    </th>
-                    <th style="width: 20%">
-                    </th>
+                    <th>No</th>
+                    <th>Agen Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Owner</th>
+                    <th>Volume</th>
+                    <th>Est Cashback</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        #
-                    </td>
-                    <td>
-                        <ul class="list-inline">
-                            <li class="d-flex">
-                                <img alt="Avatar" class="table-avatar mr-4" src="../../dist/img/avatar.png">
-                                <p class="font-weight-bold">Seller Uhuwa</p>
-                            </li>
-                        </ul>
-                    </td>
-                    <td class="project_progress">
-                        <p>Jakarta Pusat</p>
-                    </td>
-                    <td class="project_progress">
-                        <p>08129382123</p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= number_format('2000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= "Rp" . number_format('10000000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project-state">
-                        <span class="badge badge-success">Active</span>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        #
-                    </td>
-                    <td>
-                        <ul class="list-inline">
-                            <li class="d-flex">
-                                <img alt="Avatar" class="table-avatar mr-4" src="../../dist/img/avatar.png">
-                                <p class="font-weight-bold">Seller Uhuwa</p>
-                            </li>
-                        </ul>
-                    </td>
-                    <td class="project_progress">
-                        <p>Jakarta Pusat</p>
-                    </td>
-                    <td class="project_progress">
-                        <p>08129382123</p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= number_format('2000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= "Rp" . number_format('10000000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project-state">
-                        <span class="badge badge-success">Active</span>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -166,6 +63,38 @@
             });
         })
     })
+    $(document).ready(function() {
+        var table = $('#example1').DataTable({
+            "processing": true,
+            searching: true,
+            "serverSide": true,
+            "responsive": true,
+            "order": [],
+            "info": true,
+            "ajax": {
+                "url": "<?php echo site_url('CListAgen/dataAjax') ?>",
+                "type": "POST",
+            },
+            "lengthMenu": [10, 25, 50, 75, 100, 1000],
+            dom: 'lBftip', // Add the Copy, Print and export to CSV, Excel and PDF buttons
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            "columnDefs": [{
+                    "targets": [6, 7, 8, 9],
+                    "orderable": false,
+                },
+                {
+                    targets: 6,
+                    render: $.fn.dataTable.render.number(',', '.', 2, '')
+                },
+                {
+                    targets: 7,
+                    render: $.fn.dataTable.render.number(',', '.', 2, '')
+                }
+            ],
+        });
+    });
 </script>
 
 <?= $this->endsection('isi'); ?>

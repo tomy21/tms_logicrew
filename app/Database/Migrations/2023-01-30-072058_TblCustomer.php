@@ -51,6 +51,11 @@ class TblCustomer extends Migration
                 'constraint'        => 255,
                 'null'              => TRUE,
             ],
+            'pic_name' => [
+                'type'              => 'varchar',
+                'constraint'        => 255,
+                'null'              => TRUE,
+            ],
             'status' => [
                 'type'              => 'enum',
                 'constraint'        => ['1','2'],

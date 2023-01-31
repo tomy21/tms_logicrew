@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/fontawesome-free/css/all.min.css">
+    <!-- sweetalert -->
+    <script src="<?= base_url() ?>/plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- daterange picker -->
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/daterangepicker/daterangepicker.css">
     <!-- Select2 -->
@@ -28,7 +30,7 @@
     <script src="<?= base_url() ?>/plugins/jquery/jquery.min.js"></script>
 
     <style>
-        a{
+        a {
             text-decoration: none;
         }
     </style>
@@ -298,6 +300,23 @@
     <script src="<?= site_url() ?>/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?= site_url() ?>/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="<?= base_url() ?>/plugins/select2/js/select2.full.min.js"></script>
+    <script>
+        function play_notif() {
+            var audio = document.createElement('audio');
+            audio.setAttribute('src', '<?= base_url() ?>/dist/ringtone/success.mp3');
+            audio.setAttribute('autoplay', 'autoplay');
+            audio.play();
+            audio.load();
+        }
+
+        function play_notifSalah() {
+            var audio = document.createElement('audio');
+            audio.setAttribute('src', '<?= base_url() ?>/dist/ringtone/Salah2.mp3');
+            audio.setAttribute('autoplay', 'autoplay');
+            audio.play();
+            audio.load();
+        }
+    </script>
 </body>
 
 </html>
