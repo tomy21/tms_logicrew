@@ -46,8 +46,60 @@
 <!-- /.card -->
 
 <div class="modalTambahAgen" style="display: none;"></div>
+<div class="modalUpdate" style="display: none;"></div>
 
 <script>
+    function hapus(id) {
+        Swal.fire({
+            title: 'Hapus Data Agen',
+            text: "Yakin untuk hapus agen ini ? ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, Hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "post",
+                    url: "<?= site_url('/CListAgen/hapusData') ?>",
+                    data: {
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: response.success,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        play_notif();
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
+                    }
+                });
+            }
+        })
+    }
+
+    function detail(id) {
+        $.ajax({
+            url: "<?= site_url('CListAgen/modalUpdate') ?>",
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.data) {
+                    $('.modalUpdate').html(response.data).show();
+                    $('#updateAgen').modal('show');
+                }
+            }
+        });
+    }
     $(document).ready(function() {
         $("#tambahModal").click(function(e) {
             e.preventDefault();
@@ -61,7 +113,7 @@
                     }
                 }
             });
-        })
+        });
     })
     $(document).ready(function() {
         var table = $('#example1').DataTable({
