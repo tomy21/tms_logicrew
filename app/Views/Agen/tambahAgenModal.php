@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="idAgen">ID Agen</label>
-                    <input type="text" class="form-control" name="idAgen" aria-describedby="CodeBasket" value="<?= $idAgen ?>" readonly>
+                    <input type="text" class="form-control" name="idAgen" aria-describedby="CodeAgen" value="<?= $idAgen ?>" readonly>
                 </div>
                 <div class="form-group row">
                     <label for="nameAgen" class="col-sm-3 col-form-label">Agen Name</label>

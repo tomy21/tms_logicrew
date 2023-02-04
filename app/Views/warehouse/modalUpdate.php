@@ -1,20 +1,20 @@
-<div class="modal fade" id="tambahWarehouse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="updateAgen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Warehouse</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Update Warehouse</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open('CWarehouseList/addWarehouse', ['class' => 'formWarehouse']) ?>
+            <?= form_open('CWarehouseList/updateWarehouse', ['class' => 'formWarehouse']) ?>
             <div class="modal-body">
                 <div class="form-group">
                     <label for="idWarehouse">ID Warehouse</label>
-                    <input type="text" class="form-control" name="idWarehouse" id="idWarehouse" aria-describedby="IdWarehouse" value="<?= $idWH ?>" readonly>
+                    <input type="text" class="form-control" name="idWarehouse" id="idWarehouse" aria-describedby="IdWarehouse" value="<?= $idWarehouse ?>" readonly>
                 </div>
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label">Warehouse Name</label>
                     <div class="col-sm-9">
-                        <input type="text" name="name" class="form-control" id="name" value="">
+                        <input type="text" name="name" class="form-control" id="name" value="<?= $name ?>">
                         <div class="invalid-feedback errorNama">
 
                         </div>
@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label for="email" class="col-sm-3 col-form-label">Email</label>
                     <div class="col-sm-9">
-                        <input type="email" name="email" class="form-control" id="email" value="">
+                        <input type="email" name="email" class="form-control" id="email" value="<?= $email ?>">
                         <div class="invalid-feedback errorEmail">
 
                         </div>
@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <label for="address" class="col-sm-3 col-form-label">Address</label>
                     <div class="col-sm-9">
-                        <input type="text" name="address" class="form-control" id="address" value="" min="0">
+                        <input type="text" name="address" class="form-control" id="address" value="<?= $address ?>" min="0">
                         <div class="invalid-feedback errorAddress">
 
                         </div>
@@ -41,7 +41,7 @@
                 <div class="form-group row">
                     <label for="phone" class="col-sm-3 col-form-label">Phone Number</label>
                     <div class="col-sm-9">
-                        <input type="text" name="phone" class="form-control" id="phone" value="" min="0">
+                        <input type="text" name="phone" class="form-control" id="phone" value="<?= $phone ?>" min="0">
                         <div class="invalid-feedback errorPhone">
 
                         </div>
@@ -50,7 +50,7 @@
                 <div class="form-group row">
                     <label for="lat" class="col-sm-3 col-form-label">Latitude</label>
                     <div class="col-sm-9">
-                        <input type="text" name="lat" class="form-control" id="lat" value="" min="0">
+                        <input type="text" name="lat" class="form-control" id="lat" value="<?= $lat ?>" min="0">
                         <div class="invalid-feedback errorLat">
 
                         </div>
@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <label for="long" class="col-sm-3 col-form-label">Longitude</label>
                     <div class="col-sm-9">
-                        <input type="text" name="long" class="form-control" id="long" value="" min="0">
+                        <input type="text" name="long" class="form-control" id="long" value="<?= $long ?>" min="0">
                         <div class="invalid-feedback errorLong">
 
                         </div>
@@ -68,7 +68,7 @@
                 <div class="form-group row">
                     <label for="pic" class="col-sm-3 col-form-label">PIC Name</label>
                     <div class="col-sm-9">
-                        <input type="text" name="pic" class="form-control" id="pic" value="" min="0">
+                        <input type="text" name="pic" class="form-control" id="pic" value="<?= $pic ?>" min="0">
                         <div class="invalid-feedback errorPic">
 
                         </div>
@@ -78,7 +78,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+                <button type="submit" class="btn btn-primary btn-submit">Update</button>
 
             </div>
             <?= form_close(); ?>
