@@ -19,18 +19,18 @@
             </button>
         </div>
     </div>
-    <div class="card-body p-0">
+    <div class="card-body">
         <div class="btn btn-sm btn-primary p-2 m-2" id="tambahModal"><i class="fa fa-plus mr-3"></i> Tambah Data Seller</div>
-        <table class="table table-striped projects">
+        <table id="example1" class="table table-striped projects">
             <thead>
                 <tr>
                     <th style="width: 1%">
-                        #
+                        No
                     </th>
                     <th style="width: 20%">
                         Seller Name
                     </th>
-                    <th>
+                    <th style="width: 22%;">
                         Address
                     </th>
                     <th>
@@ -45,101 +45,11 @@
                     <th style="width: 8%" class="text-center">
                         Status
                     </th>
-                    <th style="width: 20%">
+                    <th style="width: 9%">
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        #
-                    </td>
-                    <td>
-                        <ul class="list-inline">
-                            <li class="d-flex">
-                                <img alt="Avatar" class="table-avatar mr-4" src="../../dist/img/avatar.png">
-                                <p class="font-weight-bold">Seller Uhuwa</p>
-                            </li>
-                        </ul>
-                    </td>
-                    <td class="project_progress">
-                        <p>Jakarta Pusat</p>
-                    </td>
-                    <td class="project_progress">
-                        <p>08129382123</p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= number_format('2000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= "Rp" . number_format('10000000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project-state">
-                        <span class="badge badge-success">Active</span>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        #
-                    </td>
-                    <td>
-                        <ul class="list-inline">
-                            <li class="d-flex">
-                                <img alt="Avatar" class="table-avatar mr-4" src="../../dist/img/avatar.png">
-                                <p class="font-weight-bold">Seller Uhuwa</p>
-                            </li>
-                        </ul>
-                    </td>
-                    <td class="project_progress">
-                        <p>Jakarta Pusat</p>
-                    </td>
-                    <td class="project_progress">
-                        <p>08129382123</p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= number_format('2000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project_progress">
-                        <p><?= "Rp" . number_format('10000000', 2, ',', '.') ?></p>
-                    </td>
-                    <td class="project-state">
-                        <span class="badge badge-success">Active</span>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -149,8 +59,60 @@
 <!-- /.card -->
 
 <div class="modalTambahSeller" style="display: none;"></div>
+<div class="modalUpdate" style="display: none;"></div>
 
 <script>
+    function hapus(id) {
+        Swal.fire({
+            title: 'Hapus Data Seller',
+            text: "Yakin untuk hapus Seller ini ? ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, Hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "post",
+                    url: "<?= site_url('CSellerList/hapusData') ?>",
+                    data: {
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: response.success,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        play_notif();
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
+                    }
+                });
+            }
+        })
+    }
+
+    function detail(id) {
+        $.ajax({
+            url: "<?= site_url('CSellerList/modalUpdate') ?>",
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.data) {
+                    $('.modalUpdate').html(response.data).show();
+                    $('#updateSeller').modal('show');
+                }
+            }
+        });
+    }
     $(document).ready(function() {
         $("#tambahModal").click(function(e) {
             e.preventDefault();
@@ -166,6 +128,38 @@
             });
         })
     })
+    $(document).ready(function() {
+        var table = $('#example1').DataTable({
+            "processing": true,
+            searching: true,
+            "serverSide": true,
+            "responsive": true,
+            "order": [],
+            "info": true,
+            "ajax": {
+                "url": "<?php echo site_url('CSellerList/dataAjax') ?>",
+                "type": "POST",
+            },
+            "lengthMenu": [10, 25, 50, 75, 100, 1000],
+            dom: 'lBftip', // Add the Copy, Print and export to CSV, Excel and PDF buttons
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            "columnDefs": [{
+                    "targets": [4, 5],
+                    "orderable": false,
+                },
+                {
+                    targets: 4,
+                    render: $.fn.dataTable.render.number(',', '.', 2, '')
+                },
+                {
+                    targets: 5,
+                    render: $.fn.dataTable.render.number(',', '.', 2, '')
+                }
+            ],
+        });
+    });
 </script>
 
 <?= $this->endsection('isi'); ?>

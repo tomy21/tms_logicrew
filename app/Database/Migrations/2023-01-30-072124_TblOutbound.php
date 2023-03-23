@@ -9,7 +9,7 @@ class TblOutbound extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'    => [
+            'id_outbound'    => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
@@ -19,11 +19,15 @@ class TblOutbound extends Migration
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
-            'resi' => [
+            'code_sorting' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
             'ekspedisi' => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
+            ],
+            'resi_out' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
@@ -35,6 +39,10 @@ class TblOutbound extends Migration
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
+            'status' => [
+                'type'              => 'int',
+                'constraint'        => 5,
+            ],
             'created_at'   => [
                 'type'              => 'datetime',
                 'null'              => TRUE,
@@ -44,7 +52,7 @@ class TblOutbound extends Migration
                 'null'              => TRUE,
             ],
         ]);
-        $this->forge->addKey('id', TRUE);
+        $this->forge->addKey('id_outbound', TRUE);
         $this->forge->createTable('tbl_outbound');
     }
 

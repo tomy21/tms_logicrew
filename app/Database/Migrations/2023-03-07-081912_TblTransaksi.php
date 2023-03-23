@@ -9,7 +9,7 @@ class TblTransaksi extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'        => [
+            'id_transaksi'        => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
@@ -77,7 +77,7 @@ class TblTransaksi extends Migration
                 'null'              => TRUE,
             ],
         ]);
-        $this->forge->addKey('id',TRUE);
+        $this->forge->addKey('id_transaksi', TRUE);
         $this->forge->createTable('tbl_transaksi');
     }
 

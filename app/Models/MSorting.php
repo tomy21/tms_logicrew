@@ -6,37 +6,32 @@ use CodeIgniter\Model;
 
 class MSorting extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'msortings';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $insertID         = 0;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $table            = 'tbl_sorting';
+    protected $primaryKey       = 'id_sorting';
+    protected $allowedFields    = ['code_sorting', 'resi', 'ekspedisi', 'warehouse', 'area','status_sort'];
+    protected $useTimestamps    = true;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    public function tampilData()
+    {
+        $builder = $this->db->table('tbl_sorting');
+        $builder->select('*, tbl_ekspedisi.ekspedisi as ekspedisiName');
+        $builder->join('tbl_customer', 'tbl_customer.id_customer=tbl_sorting.warehouse');
+        $builder->join('tbl_ekspedisi', 'tbl_ekspedisi.id_ekspedisi = tbl_sorting.ekspedisi');
+        $builder->where('status_sort', 1);
+        $data = $builder->get();
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+        return $data->getResult();
+    }
+    public function tampilDataListModal($codeIn)
+    {
+        $builder = $this->db->table('tbl_sorting');
+        $builder->select('tbl_sorting.*,tbl_ekspedisi.ekspedisi as namaEkspedisi, tbl_customer.nama_customer as namaCustomer');
+        $builder->join('tbl_customer', 'tbl_customer.id_customer=tbl_sorting.warehouse');
+        $builder->join('tbl_ekspedisi', 'tbl_ekspedisi.id_ekspedisi=tbl_sorting.ekspedisi');
+        $builder->where('code_sorting', $codeIn);
+        $data = $builder->get();
+        // $data = $this->db->table('tbl_inbound')->get();
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+        return $data->getresult();
+    }
 }

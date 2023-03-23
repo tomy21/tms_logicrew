@@ -4,34 +4,22 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TblInbound extends Migration
+class TblAreaSorting extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_inbound'    => [
+            'id_area'        => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
-            'code_inbound' => [
-                'type'              => 'VARCHAR',
-                'constraint'        => 255,
-            ],
-            'resi' => [
-                'type'              => 'VARCHAR',
-                'constraint'        => 255,
-            ],
-            'ekspedisi' => [
-                'type'              => 'VARCHAR',
-                'constraint'        => 255,
-            ],
-            'desc' => [
+            'id_ekspedisi'        => [
                 'type'              => 'INT',
-                'constraint'        => 255,
+                'constraint'        => 5,
             ],
-            'warehouse' => [
+            'area'   => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
@@ -44,12 +32,12 @@ class TblInbound extends Migration
                 'null'              => TRUE,
             ],
         ]);
-        $this->forge->addKey('id_inbound', TRUE);
-        $this->forge->createTable('tbl_inbound');
+        $this->forge->addKey('id_area', TRUE);
+        $this->forge->createTable('tbl_areasorting');
     }
 
     public function down()
     {
-        $this->forge->dropTable('tbl_inbound');
+        $this->forge->dropTable('tbl_areasorting');
     }
 }

@@ -3,40 +3,36 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\HTTP\RequestInterface;
 
 class MOutbound extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'moutbounds';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $insertID         = 0;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $table            = 'tbl_outbound';
+    protected $primaryKey       = 'id_outbound';
+    protected $allowedFields    = ['code_outbound', 'code_sorting', 'ekspedisi', 'resi_out', 'warehouse', 'agen', 'status'];
+    protected $useTimestamps    = true;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    public function tampilData()
+    {
+        $builder = $this->db->table('tbl_outbound');
+        $builder->select('tbl_outbound.*, tbl_customer.nama_customer as namaCustomer, tbl_ekspedisi.ekspedisi as namaEkspedisi');
+        $builder->join('tbl_customer', 'tbl_customer.id_customer=tbl_outbound.warehouse');
+        $builder->join('tbl_ekspedisi', 'tbl_ekspedisi.id_ekspedisi=tbl_outbound.ekspedisi');
+        $data = $builder->get();
+        // $data = $this->db->table('tbl_inbound')->get();
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+        return $data->getresult();
+    }
+    public function tampilDataListModal($codeIn)
+    {
+        $builder = $this->db->table('tbl_outbound');
+        $builder->select('tbl_outbound.*, tbl_customer.nama_customer AS namaCustomer, tbl_customer.status AS statusCust, tbl_ekspedisi.ekspedisi AS namaEkspedisi');
+        $builder->join('tbl_customer', 'tbl_customer.id_customer=tbl_outbound.warehouse');
+        $builder->join('tbl_ekspedisi', 'tbl_ekspedisi.id_ekspedisi=tbl_outbound.ekspedisi');
+        $builder->where('tbl_outbound.status', $codeIn);
+        $data = $builder->get();
+        // $data = $this->db->table('tbl_inbound')->get();
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+        return $data->getresult();
+    }
 }

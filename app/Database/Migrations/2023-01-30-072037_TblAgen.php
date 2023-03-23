@@ -9,7 +9,7 @@ class TblAgen extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'    => [
+            'id_agen'    => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
@@ -64,7 +64,7 @@ class TblAgen extends Migration
                 'null'              => TRUE,
             ],
         ]);
-        $this->forge->addKey('id', TRUE);
+        $this->forge->addKey('id_agen', TRUE);
         $this->forge->createTable('tbl_agen');
     }
 

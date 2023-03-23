@@ -9,7 +9,7 @@ class TblCashback extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'    => [
+            'id_cashback'    => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
@@ -36,7 +36,7 @@ class TblCashback extends Migration
                 'null'              => TRUE,
             ],
         ]);
-        $this->forge->addKey('id', TRUE);
+        $this->forge->addKey('id_cashback', TRUE);
         $this->forge->createTable('tbl_cashback');
     }
 

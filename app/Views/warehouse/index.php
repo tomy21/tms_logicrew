@@ -63,8 +63,8 @@
 <script>
     function hapus(id) {
         Swal.fire({
-            title: 'Hapus Data Agen',
-            text: "Yakin untuk hapus agen ini ? ",
+            title: 'Hapus Data Warehouse',
+            text: "Yakin untuk hapus warehouse ini ? ",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

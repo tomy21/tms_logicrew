@@ -5,14 +5,14 @@ namespace App\Models;
 use CodeIgniter\Model;
 use CodeIgniter\HTTP\RequestInterface;
 
-class MAgen extends Model
+class MNoOutbound extends Model
 {
-    protected $table            = 'tbl_agen';
-    protected $primaryKey       = 'id_agen';
-    protected $allowedFields    = ['code_agen', 'nama_agen', 'alamat_agen', 'email', 'phone', 'longitude', 'latitude', 'join_date','status','owner_name'];
+    protected $table            = 'tbl_nooutbound';
+    protected $primaryKey       = 'id_outbound';
+    protected $allowedFields    = ['code_outbound', 'qty'];
     protected $useTimestamps    = true;
-    protected $column_order     = array(null, 'nama_agen', 'alamat_agen', 'phone','email','owner_name',null,null,'status',null, null);
-    protected $column_search    = array('nama_agen', 'alamat_agen', 'phone', 'owner_name');
+    protected $column_order     = array(null, 'code_outbound','qty', 'status', 'created_at', null);
+    protected $column_search    = array('code_outbound', 'created_at', 'qty');
     protected $order            = array('created_at' => 'desc');
     protected $request;
     protected $dt;
@@ -69,9 +69,9 @@ class MAgen extends Model
         $tbl_storage = $this->db->table($this->table);
         return $tbl_storage->countAllResults();
     }
-    public function idAgen()
+    public function idOutbound()
     {
-        $kode = $this->db->table('tbl_agen')->select('RIGHT(code_agen,3) as id', false)->orderBy('code_agen', 'DESC')->limit(1)->get()->getRowArray();
+        $kode = $this->db->table('tbl_nooutbound')->select('RIGHT(code_outbound,3) as id', false)->orderBy('code_outbound', 'DESC')->limit(1)->get()->getRowArray();
 
         // $no = 1;
         if (isset($kode['id']) == null) {
@@ -81,13 +81,10 @@ class MAgen extends Model
         }
 
         $tgl = date('Ymd');
-        $awal = "AGN";
+        $awal = "OUT";
         $l = "-";
         $batas = str_pad($no, 3, "0", STR_PAD_LEFT);
-        $idAgen = $awal . $l . $tgl . $batas;
-        return $idAgen;
-    }
-    public function listAgen(){
-        return $list = $this->db->table('tbl_agen')->get()->getResult();
+        $idOutbound = $awal . $l . $tgl . $batas;
+        return $idOutbound;
     }
 }

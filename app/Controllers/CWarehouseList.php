@@ -41,7 +41,7 @@ class CWarehouseList extends BaseController
             $request = Services::request();
             $modalAgen = new MCustomer($request);
             $id         = $this->request->getVar('id');
-            $getData    = $modalAgen->getWhere(['id' => $id])->getRow();
+            $getData    = $modalAgen->getWhere(['id_customer' => $id])->getRow();
 
             // dd($getData->code_agen);die();
             $data = [
@@ -68,16 +68,17 @@ class CWarehouseList extends BaseController
     {
         $request = Services::request();
         $datatable = new MCustomer($request);
+        $desc = "Warehouse";
 
         if ($request->getMethod(true) === 'POST') {
-            $lists = $datatable->getDatatables();
+            $lists = $datatable->getDatatables($desc);
             $data = [];
             $no = $request->getPost('start');
 
             foreach ($lists as $list) {
                 $button = "
-                        <button class=\"btn btn-sm btn-info\" id=\"updateData\" onclick=\"detail($list->id)\" ><i class=\"fa fa-edit\"></i></button>
-                        <button class=\"btn btn-sm btn-danger\" onclick=\"hapus($list->id)\" ><i class=\"fa fa-trash-alt\"></i></button>
+                        <button class=\"btn btn-sm btn-info\" id=\"updateData\" onclick=\"detail($list->id_customer)\" ><i class=\"fa fa-edit\"></i></button>
+                        <button class=\"btn btn-sm btn-danger\" onclick=\"hapus($list->id_customer)\" ><i class=\"fa fa-trash-alt\"></i></button>
                     ";
                 $status = $list->status == 1 ? "<span class=\"badge text-bg-success\">Active</span>" : "<span class=\"badge text-bg-danger\">Not Active</span>";
                 $no++;
@@ -190,7 +191,7 @@ class CWarehouseList extends BaseController
                         'code_customer'     => $id,
                         'nama_customer'     => $name,
                         'alamat_customer'   => $address,
-                        'desc'          => "Warehouse",
+                        'desc_cust'          => "Warehouse",
                         'email'         => $email,
                         'phone'         => $phone,
                         'longitude'     => $long,
@@ -296,7 +297,7 @@ class CWarehouseList extends BaseController
                         'code_customer'     => $id,
                         'nama_customer'     => $name,
                         'alamat_customer'   => $address,
-                        'desc'          => "Warehouse",
+                        'desc_cust'          => "Warehouse",
                         'email'         => $email,
                         'phone'         => $phone,
                         'longitude'     => $long,
@@ -312,6 +313,23 @@ class CWarehouseList extends BaseController
                     ];
                 }
             }
+            echo json_encode($json);
+        } else {
+            exit('Maaf tidak bisa dipanggil');
+        }
+    }
+    public function hapusData()
+    {
+        if ($this->request->isAJAX()) {
+            $id = $this->request->getVar('id');
+            $request = Services::request();
+            $modelAgen = new MCustomer($request);
+            $modelAgen->delete($id);
+
+            $json = [
+                'success'       => 'Data Warehouse berhasil dihapus'
+            ];
+
             echo json_encode($json);
         } else {
             exit('Maaf tidak bisa dipanggil');

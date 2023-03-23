@@ -9,7 +9,7 @@ class TblCustomer extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'    => [
+            'id_customer'    => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
@@ -19,7 +19,7 @@ class TblCustomer extends Migration
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
-            'desc' => [
+            'desc_cust' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
@@ -37,7 +37,7 @@ class TblCustomer extends Migration
                 'null'              => TRUE,
             ],
             'phone' => [
-                'type'              => 'int',
+                'type'              => 'VARCHAR',
                 'constraint'        => 18,
                 'null'              => TRUE,
             ],
@@ -73,7 +73,7 @@ class TblCustomer extends Migration
                 'null'              => TRUE,
             ],
         ]);
-        $this->forge->addKey('id', TRUE);
+        $this->forge->addKey('id_customer', TRUE);
         $this->forge->createTable('tbl_customer');
     }
 

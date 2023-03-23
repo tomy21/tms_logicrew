@@ -35,7 +35,7 @@
         }
     </style>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini" onload="update_resi()">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -315,6 +315,15 @@
             audio.setAttribute('autoplay', 'autoplay');
             audio.play();
             audio.load();
+        }
+
+        function update_resi() {
+            $.ajax({
+                url: "<?php echo site_url('CStatus/update_resi') ?>",
+                success: function(html) {
+
+                }
+            });
         }
     </script>
 </body>

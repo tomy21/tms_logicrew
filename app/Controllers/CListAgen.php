@@ -41,7 +41,7 @@ class CListAgen extends BaseController
             $request = Services::request();
             $modalAgen = new MAgen($request);
             $id         = $this->request->getVar('id');
-            $getData    = $modalAgen->getWhere(['id'=> $id])->getRow();
+            $getData    = $modalAgen->getWhere(['id_agen'=> $id])->getRow();
 
             // dd($getData->code_agen);die();
             $data = [
@@ -76,8 +76,8 @@ class CListAgen extends BaseController
 
             foreach ($lists as $list) {
                 $button = "
-                        <button class=\"btn btn-sm btn-info\" id=\"updateData\" onclick=\"detail($list->id)\"><i class=\"fa fa-edit\"></i></button>
-                        <button class=\"btn btn-sm btn-danger\" onclick=\"hapus($list->id)\"><i class=\"fa fa-trash-alt\"></i></button>
+                        <button class=\"btn btn-sm btn-info\" id=\"updateData\" onclick=\"detail($list->id_agen)\"><i class=\"fa fa-edit\"></i></button>
+                        <button class=\"btn btn-sm btn-danger\" onclick=\"hapus($list->id_agen)\"><i class=\"fa fa-trash-alt\"></i></button>
                     ";
                 $status = $list->status == 1 ? "<span class=\"badge text-bg-success\">Active</span>" : "<span class=\"badge text-bg-danger\">Not Active</span>";
                 $no++;

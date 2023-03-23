@@ -5,15 +5,15 @@ namespace App\Models;
 use CodeIgniter\Model;
 use CodeIgniter\HTTP\RequestInterface;
 
-class MAgen extends Model
+class MNoInbound extends Model
 {
-    protected $table            = 'tbl_agen';
-    protected $primaryKey       = 'id_agen';
-    protected $allowedFields    = ['code_agen', 'nama_agen', 'alamat_agen', 'email', 'phone', 'longitude', 'latitude', 'join_date','status','owner_name'];
+    protected $table            = 'tbl_noinbound';
+    protected $primaryKey       = 'id_inbound';
+    protected $allowedFields    = ['code_inbound', 'qty'];
     protected $useTimestamps    = true;
-    protected $column_order     = array(null, 'nama_agen', 'alamat_agen', 'phone','email','owner_name',null,null,'status',null, null);
-    protected $column_search    = array('nama_agen', 'alamat_agen', 'phone', 'owner_name');
-    protected $order            = array('created_at' => 'desc');
+    protected $column_order     = array(null,'code_inbound', 'qty','status','created_at', null);
+    protected $column_search    = array('code_inbound', 'created_at', 'qty');
+    protected $order            = array('created_at' => 'desc_cust');
     protected $request;
     protected $dt;
     protected $db;
@@ -69,9 +69,9 @@ class MAgen extends Model
         $tbl_storage = $this->db->table($this->table);
         return $tbl_storage->countAllResults();
     }
-    public function idAgen()
+    public function idInbound()
     {
-        $kode = $this->db->table('tbl_agen')->select('RIGHT(code_agen,3) as id', false)->orderBy('code_agen', 'DESC')->limit(1)->get()->getRowArray();
+        $kode = $this->db->table('tbl_noinbound')->select('RIGHT(code_inbound,3) as id', false)->orderBy('code_inbound', 'DESC')->limit(1)->get()->getRowArray();
 
         // $no = 1;
         if (isset($kode['id']) == null) {
@@ -81,13 +81,20 @@ class MAgen extends Model
         }
 
         $tgl = date('Ymd');
-        $awal = "AGN";
+        $awal = "IN";
         $l = "-";
         $batas = str_pad($no, 3, "0", STR_PAD_LEFT);
-        $idAgen = $awal . $l . $tgl . $batas;
-        return $idAgen;
+        $idInbound = $awal . $l . $tgl . $batas;
+        return $idInbound;
     }
-    public function listAgen(){
-        return $list = $this->db->table('tbl_agen')->get()->getResult();
+    public function tampilData()
+    {
+        $builder = $this->db->table('tbl_inbound');
+        $builder->select('*');
+        $builder->join('tbl_customer', 'tbl_customer.id_customer=tbl_inbound.warehouse');
+        $data = $builder->get();
+        // $data = $this->db->table('tbl_inbound')->get();
+
+        return $data->getresult();
     }
 }

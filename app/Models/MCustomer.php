@@ -8,12 +8,12 @@ use CodeIgniter\HTTP\RequestInterface;
 class MCustomer extends Model
 {
     protected $table            = 'tbl_customer';
-    protected $primaryKey       = 'id';
-    protected $allowedFields    = ['code_customer', 'desc', 'nama_customer', 'alamat_customer','email', 'phone', 'longitude', 'latitude','pic_name', 'join_date', 'status'];
+    protected $primaryKey       = 'id_customer';
+    protected $allowedFields    = ['code_customer', 'desc_cust', 'nama_customer', 'alamat_customer','email', 'phone', 'longitude', 'latitude','pic_name', 'join_date', 'status'];
     protected $useTimestamps    = true;
-    protected $column_order     = array(null, 'nama_customer','desc', 'phone', 'email', 'pic_name', null, null, 'status', null, null);
+    protected $column_order     = array(null, 'nama_customer', 'desc_cust', 'phone', 'email', 'pic_name', null, null, 'status', null, null);
     protected $column_search    = array('nama_customer', 'alamat_agen', 'phone', 'pic_name');
-    protected $order            = array('created_at' => 'desc');
+    protected $order            = array('created_at' => 'desc_cust');
     protected $request;
     protected $dt;
     protected $db;
@@ -49,12 +49,12 @@ class MCustomer extends Model
         }
     }
 
-    public function getDatatables()
+    public function getDatatables($desc)
     {
         $this->getDatatablesQuery();
         if ($this->request->getPost('length') != -1)
             $this->dt->limit($this->request->getPost('length'), $this->request->getPost('start'));
-        $query = $this->dt->get();
+        $query = $this->dt->where('desc_cust',$desc)->get();
         return $query->getResult();
     }
 
@@ -104,5 +104,12 @@ class MCustomer extends Model
         $batas = str_pad($no, 3, "0", STR_PAD_LEFT);
         $idAgen = $awal . $l . $tgl . $batas;
         return $idAgen;
+    }
+
+    public function listWarehouse($desc)
+    {
+        $list = $this->dt->where('desc_cust',$desc)->get();
+
+        return $list->getResult();
     }
 }

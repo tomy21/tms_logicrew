@@ -9,7 +9,7 @@ class TblSorting extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'    => [
+            'id_sorting'    => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
@@ -31,6 +31,14 @@ class TblSorting extends Migration
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
+            'area' => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
+            ],
+            'status_sort' => [
+                'type'              => 'int',
+                'constraint'        => 5,
+            ],
             'created_at'   => [
                 'type'              => 'datetime',
                 'null'              => TRUE,
@@ -40,7 +48,7 @@ class TblSorting extends Migration
                 'null'              => TRUE,
             ],
         ]);
-        $this->forge->addKey('id', TRUE);
+        $this->forge->addKey('id_sorting', TRUE);
         $this->forge->createTable('tbl_sorting');
     }
 
