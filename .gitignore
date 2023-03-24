@@ -3,9 +3,9 @@
 #-------------------------
 
 # OS X
-.DS_Store
-.AppleDouble
-.LSOverride
+# .DS_Store
+# .AppleDouble
+# .LSOverride
 
 # OS X Thumbnails
 ._*
@@ -48,19 +48,19 @@ Vagrantfile
 #-------------------------
 # Temporary Files
 #-------------------------
-writable/cache/*
+# writable/cache/*
 !writable/cache/index.html
 
-writable/logs/*
+# writable/logs/*
 !writable/logs/index.html
 
-writable/session/*
+# writable/session/*
 !writable/session/index.html
 
-writable/uploads/*
+# writable/uploads/*
 !writable/uploads/index.html
 
-writable/debugbar/*
+# writable/debugbar/*
 
 php_errors.log
 
@@ -103,7 +103,7 @@ _modules/*
 nbproject/
 build/
 nbbuild/
-dist/
+# dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
