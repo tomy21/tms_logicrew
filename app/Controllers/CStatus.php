@@ -46,8 +46,12 @@ class CStatus extends BaseController
                     $status = "<span class=\"badge badge-info\">In Hub</span>";
                 } else if ($list->status_hub == 2) {
                     $status = "<span class=\"badge badge-warning\">Sort</span>";
-                } else {
+                } else if($list->status_hub == 3) {
                     $status = "<span class=\"badge badge-primary\">Out</span>";
+                } else if ($list->status_hub == 4) {
+                    $status = "<span class=\"badge badge-danger\">Return</span>";
+                }else {
+                    $status = "<span class=\"badge badge-success\">Returned</span>";
                 }
 
                 $button = "
@@ -127,7 +131,7 @@ class CStatus extends BaseController
                             }
                             $data = [
                                 // 'awb'               => isset($getUpdate->result->waybill_number) ? $getUpdate->result->waybill_number : "-",
-                                'status_pod'        => isset($getUpdate->detail->last_status->status) ? $getUpdate->result->last_status->status : "-",
+                                'status_pod'        => isset($updateStatus) ? $updateStatus : "-",
                                 'desc'              => isset(end($getUpdate->history)->status) ? end($getUpdate->history)->status : '-',
                                 'update_resi'       => isset($getUpdate->history[0]->date_time) ? $getUpdate->history[0]->date_time : "-",
                                 'ongkir'            => isset($getUpdate->detail->actual_amount) ? $getUpdate->detail->actual_amount : "-",

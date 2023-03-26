@@ -13,7 +13,7 @@ class MCustomer extends Model
     protected $useTimestamps    = true;
     protected $column_order     = array(null, 'nama_customer', 'desc_cust', 'phone', 'email', 'pic_name', null, null, 'status', null, null);
     protected $column_search    = array('nama_customer', 'alamat_agen', 'phone', 'pic_name');
-    protected $order            = array('created_at' => 'desc_cust');
+    protected $order            = array('created_at' => 'desc');
     protected $request;
     protected $dt;
     protected $db;

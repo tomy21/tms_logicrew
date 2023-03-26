@@ -48,7 +48,7 @@
             </ul>
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto ">
                 <!-- Navbar Search -->
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -72,34 +72,18 @@
                 </li>
 
                 <!-- Messages Dropdown Menu -->
-                <div class="user-panel d-flex">
-                    <div class="image">
+                <div class="user-panel d-flex flex-row bd-highlight pr-lg-3 justify-content-center align-items-center">
+                    <div class="image pr-3 ">
                         <img src="<?= base_url() ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
+                    <li class="user-panel pr-3">
+                        <p class="m-0 text-bold"><?= user()->username ?></p>
+                    </li>
+                    <li class="user-panel pr-3">
+                        <a href="<?= base_url("/logout") ?>" class="btn btn-sm btn-danger"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                    </li>
                 </div>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <p>Tomy Agung Saputro</p>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-user mr-2"></i> Profil
-                            </a>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                            </a>
-                            <!-- Message End -->
-                        </a>
 
-                    </div>
-                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -212,6 +196,14 @@
                                 <i class="nav-icon fa fa-chart-line"></i>
                                 <p>
                                     Analytics
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('CUsers/index') ?>" class="nav-link <?= $menu == 'users' ? 'active' : '' ?>">
+                                <i class="nav-icon fa fa-users"></i>
+                                <p>
+                                    Manage Users
                                 </p>
                             </a>
                         </li>

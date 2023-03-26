@@ -37,7 +37,7 @@ class TblReturn extends Migration
             ],
             'desc' => [
                 'type'              => 'ENUM',
-                'constraint'        => ['in','out'],
+                'constraint'        => ['in','out','done'],
             ],
             'created_at'   => [
                 'type'              => 'datetime',

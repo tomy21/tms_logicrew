@@ -34,6 +34,7 @@ class ComposerStaticInit4d084648ca47a7fdc5536890dc4ee8b0
         ),
         'M' => 
         array (
+            'Myth\\Auth\\' => 10,
             'MyCLabs\\Enum\\' => 13,
             'Matrix\\' => 7,
         ),
@@ -76,8 +77,8 @@ class ComposerStaticInit4d084648ca47a7fdc5536890dc4ee8b0
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -94,6 +95,10 @@ class ComposerStaticInit4d084648ca47a7fdc5536890dc4ee8b0
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
+        'Myth\\Auth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myth/auth/src',
         ),
         'MyCLabs\\Enum\\' => 
         array (
